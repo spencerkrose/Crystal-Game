@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ultimate Crystal Adventure</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<style>
+    .crystal-image {
+    width: 100px;
+    height: 100px;
+    margin-left: 6%
+   
+}
+</style>
+
+</style>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">ULTIMATE CRYSTAL ADVENTURES</h1>
+        <p class="lead">This is the greatest test mankind has ever faced. Can you use the magic Crystals of Randimonium to match the magical number given to you by the mighty wizard Spenzor the Rose?</p>
+    </div>
+    <img src="./images/evil wizard.png"  class="rounded float-right" alt="Beware my powers!">
+    <h3>Number Mercifully Given to you by Spenzor the Rose: <span id="number-to-guess"></span></h3>
+
+    <div id="crystals">
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        var targetNumber = [Math.floor(Math.random() * (18,121))];
+        var imagesArr = ["./images/gem.png", "./images/gemstone.png", "./images/crystal.png", "./images/sparkles.png"]
+
+
+        $("#number-to-guess").text(targetNumber);
+
+        var counter = 0;
+        // console.log(Math.floor(Math.random() * 12) + 1)
+        // console.log(10)
+        var numberOptions = [Math.floor(Math.random() * 12) + 1, Math.floor(Math.random() * 12) + 1, Math.floor(Math.random() * 12) + 1, Math.floor(Math.random() * 12) + 1]
+        for (var i = 0; i < 4; i++) {
+            var imageCrystal = $("<img>");
+            imageCrystal.addClass("crystal-image");
+            imageCrystal.attr("src", imagesArr[Math.floor(Math.random() * 4)])
+            imageCrystal.attr("data-crystalvalue", parseInt(numberOptions[i]));
+            $("#crystals").append(imageCrystal);
+        }
+
+
+        $(".crystal-image").on("click", function () {
+
+            var crystalValue = ($(this).attr("data-crystalvalue"));
+            crystalValue = parseInt(crystalValue);
+
+            counter += crystalValue;
+
+
+            alert("New score: " + counter);
+
+            if (counter === targetNumber) {
+                alert("You win!");
+            }
+
+            else if (counter >= targetNumber) {
+                alert("You lose!!");
+            }
+
+        });
+
+    </script>
+
+
+    <div class="footer-copyright text-center py-3">Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a
+            href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
+            href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0
+            BY</a></div>
+</body>
+
+</html>
